@@ -56,7 +56,6 @@ const Login = () => {
               />
             </label>
           </div>
-
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login

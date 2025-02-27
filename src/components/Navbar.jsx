@@ -1,17 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="navbar bg-base-300 px-2">
+    <div className="navbar bg-base-300 px-4">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Devtinder</a>
+        <img src={logo} className="w-8"></img>
+        <a className=" text-2xl font-bold mx-1">Devtinder</a>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
-          {user && <p>{`Hi, ${user.firstName}`}</p>}
+          {user && (
+            <p className="text-lg font-bold">{`Hi, ${user.firstName}`}</p>
+          )}
         </div>
         <div className="dropdown dropdown-end">
           <div
