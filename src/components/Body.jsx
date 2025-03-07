@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { BASE_URL } from "../utils/constants";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Body = () => {
   const fetchUser = async () => {
     if (userData) return;
     try {
-      const user = await axios.get("http://localhost:3333/profile/view", {
+      const user = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
       dispatch(addUser(user.data));
@@ -31,7 +32,6 @@ const Body = () => {
     <div>
       <Navbar />
       <Outlet />
-      {/* <Footer /> */}
     </div>
   );
 };
