@@ -18,10 +18,10 @@ const FeedCard = ({ users }) => {
         </h2>
         <p className="text-white text-sm">{about}</p>
         <div className="card-actions justify-center items-center mt-4 gap-8">
-          <button className="btn bg-red-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-red-600 transition">
+          <button className="btn bg-pink-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-pink-600 transition">
             Ignored
           </button>
-          <button className="btn bg-green-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-600 transition">
+          <button className="btn bg-purple-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-purple-600 transition">
             Interested
           </button>
         </div>
