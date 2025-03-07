@@ -16,7 +16,10 @@ const Body = () => {
       });
       dispatch(addUser(user.data));
     } catch (err) {
-      navigate("/login");
+      if (err.status === 401) {
+        navigate("/login");
+      }
+      console.log(err.message);
     }
   };
 
