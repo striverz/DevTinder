@@ -3,13 +3,15 @@ import Navbar from "./Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
 
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userData = useSelector((store) => store.user);
   const fetchUser = async () => {
+    if (userData) return;
     try {
       const user = await axios.get("http://localhost:3333/profile/view", {
         withCredentials: true,
@@ -19,7 +21,6 @@ const Body = () => {
       if (err.status === 401) {
         navigate("/login");
       }
-      console.log(err.message);
     }
   };
 

@@ -7,23 +7,27 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const result = await axios.post(
+      if (!emailId || !password) {
+        setErrMsg("Email and password are required");
+        return;
+      }
+
+      const response = await axios.post(
         "http://localhost:3333/login",
-        {
-          emailId,
-          password,
-        },
+        { emailId, password },
         { withCredentials: true }
       );
-      dispatch(addUser(result.data));
-      navigate("/");
-    } catch (err) {
-      console.log(err.message);
+
+      dispatch(addUser(response.data)); // Ensure dispatch is available
+      navigate("/"); // Ensure navigate is available
+    } catch (error) {
+      setErrMsg(error.response?.data || error.message);
     }
   };
   return (
@@ -56,6 +60,9 @@ const Login = () => {
               />
             </label>
           </div>
+
+          <p className="text-red-500">{errMsg}</p>
+
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login
