@@ -6,11 +6,29 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [emailId, setEmailId] = useState("saranya@gmail.com");
   const [password, setPassword] = useState("Saranya@0011");
   const [errMsg, setErrMsg] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const toogleLogin = () => {
+    setIsLogin(!isLogin);
+  };
+
+  const handleSignUp = async () => {
+    const signupUser = await axios.post(
+      BASE_URL + "/signup",
+      { firstName, lastName, emailId, password },
+      { withCredentials: true }
+    );
+    console.log(signupUser.data);
+    dispatch(addUser(signupUser?.data));
+    navigate("/profile");
+  };
 
   const handleLogin = async () => {
     try {
@@ -35,9 +53,37 @@ const Login = () => {
     <div className="flex justify-center">
       <div className="card bg-base-300 w-96 shadow-xl my-10 ">
         <div className="card-body ">
-          <h2 className="card-title flex justify-center">Login</h2>
+          <h2 className="card-title flex justify-center">
+            {isLogin ? "SignIn" : "SignUp"}
+          </h2>
 
           <div>
+            {!isLogin && (
+              <label className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">FirstName</span>
+                </div>
+                <input
+                  type="text"
+                  className="input input-bordered w-full max-w-xs"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </label>
+            )}
+            {!isLogin && (
+              <label className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">LastName</span>
+                </div>
+                <input
+                  type="text"
+                  className="input input-bordered w-full max-w-xs"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </label>
+            )}
             <label className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Email ID</span>
@@ -62,12 +108,20 @@ const Login = () => {
             </label>
           </div>
 
-          <p className="text-red-500">{errMsg}</p>
+          {errMsg && <p className="text-red-500">{errMsg}</p>}
+          <p onClick={toogleLogin}>{isLogin ? "New User" : "Already User"}</p>
 
           <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={handleLogin}>
-              Login
-            </button>
+            {isLogin && (
+              <button className="btn btn-primary" onClick={handleLogin}>
+                Login
+              </button>
+            )}
+            {!isLogin && (
+              <button className="btn btn-primary" onClick={handleSignUp}>
+                SignUp
+              </button>
+            )}
           </div>
         </div>
       </div>
