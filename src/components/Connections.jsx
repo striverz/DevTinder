@@ -22,15 +22,13 @@ const Connections = () => {
     getConnections();
   }, []);
 
+  if (!connections) return;
+
   return (
     <div>
-      {connections ? (
-        connections.map((connection, ind) => {
-          return <h1 key={ind}>{connection.firstName}</h1>;
-        })
-      ) : (
-        <h1>No Connections found</h1>
-      )}
+      {connections.map((connection, ind) => {
+        return <h1 key={ind}>{connection?.firstName}</h1>;
+      })}
     </div>
   );
 };
