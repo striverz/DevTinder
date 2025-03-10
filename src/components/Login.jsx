@@ -25,8 +25,8 @@ const Login = () => {
       { firstName, lastName, emailId, password },
       { withCredentials: true }
     );
-    console.log(signupUser.data);
-    dispatch(addUser(signupUser?.data));
+    console.log(signupUser.data?.data);
+    dispatch(addUser(signupUser?.data?.data));
     navigate("/profile");
   };
 
@@ -43,7 +43,7 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      dispatch(addUser(response.data)); // Ensure dispatch is available
+      dispatch(addUser(response?.data?.data)); // Ensure dispatch is available
       navigate("/"); // Ensure navigate is available
     } catch (error) {
       setErrMsg(error.response?.data || error.message);
