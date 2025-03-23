@@ -1,13 +1,33 @@
 import { useState } from "react";
 import { Bell } from "lucide-react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { removeUser } from "../redux/userSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const userFound = useSelector((store) => store.user);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        BASE_URL + "/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(removeUser());
+      navigate("/");
+    } catch (err) {}
+  };
 
   return (
     <nav className="flex items-center justify-between p-4 h-18 shadow-md bg-white ">
@@ -66,18 +86,30 @@ const Navbar = () => {
             />
             {isOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-lg overflow-hidden">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                <Link
+                  to="/profile"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
                   Profile
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                </Link>
+                <Link
+                  to="/connections"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
                   Connections
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                </Link>
+                <Link
+                  to="/requests"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
                   Requests
-                </a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                </Link>
+                <Link
+                  onClick={handleLogout}
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
                   Logout
-                </a>
+                </Link>
               </div>
             )}
           </div>
