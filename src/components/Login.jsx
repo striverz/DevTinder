@@ -4,12 +4,15 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
   const [emailId, setEmailId] = useState("manikanta@gmail.com");
   const [password, setPassword] = useState("Manikanta@0011");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const toogleIsLogin = () => {
     setIsLogin(!isLogin);
@@ -24,6 +27,7 @@ const Login = () => {
       );
 
       dispatch(addUser(response?.data?.data));
+      navigate("/feed");
     } catch (err) {
       setErrorMessage(err?.response?.data?.error);
     }

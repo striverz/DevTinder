@@ -48,15 +48,20 @@ const Navbar = () => {
       {/* Profile and Notifications */}
       {userFound && (
         <div className="relative flex items-center space-x-4">
+          {userFound && (
+            <p className="text-base font-semibold">
+              {"Hi, " + userFound?.firstName}
+            </p>
+          )}
           <Bell
             className="text-gray-600 cursor-pointer hover:text-indigo-600"
             size={24}
           />
-          <div className="relative">
+          <div className="relative w-10 rounded-full">
             <img
-              src="https://randomuser.me/api/portraits/men/1.jpg"
+              src="https://wallpapercave.com/wp/wp3067438.jpg"
               alt="User Profile"
-              className="w-10 h-10 rounded-full cursor-pointer"
+              className="w-10 h-10 rounded-full object-cover cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
             />
             {isOpen && (
