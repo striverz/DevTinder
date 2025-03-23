@@ -2,10 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 const Login = () => {
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("manikanta@gmail.com");
+  const [password, setPassword] = useState("Manikanta@0011");
   const [errorMessage, setErrorMessage] = useState("");
 
   const toogleIsLogin = () => {
@@ -19,6 +22,8 @@ const Login = () => {
         { emailId, password },
         { withCredentials: true }
       );
+
+      dispatch(addUser(response?.data?.data));
     } catch (err) {
       setErrorMessage(err?.response?.data?.error);
     }
