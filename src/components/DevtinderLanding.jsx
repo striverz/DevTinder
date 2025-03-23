@@ -2,7 +2,7 @@ import React from "react";
 
 const DevtinderLanding = () => {
   return (
-    <div className="flex flex-col items-center justify-center  bg-white px-4">
+    <div className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] bg-white px-4">
       <div className="text-center mt-10 md:mt-20 px-4">
         <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs md:text-sm font-medium">
           Introducing DevTinder
