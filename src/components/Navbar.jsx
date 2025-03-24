@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Bell } from "lucide-react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,15 +9,17 @@ import { removeUser } from "../redux/userSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const requests = useSelector((store) => store.requests);
   const userFound = useSelector((store) => store.user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const dropdownRef = useRef(null);
+
   const handleLogout = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         BASE_URL + "/logout",
         {},
         {
@@ -29,27 +31,45 @@ const Navbar = () => {
     } catch (err) {}
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <nav className="flex items-center justify-between p-4 h-18 shadow-md bg-white ">
+    <nav className="flex items-center justify-between p-4 h-18 bg-white">
       <Link to="/">
-        <div className="flex items-center ">
-          <img src={logo} className="w-8"></img>
+        <div className="flex items-center">
+          <img src={logo} className="w-8" alt="DevTinder Logo" />
           <div className="text-indigo-600 font-bold text-lg">DevTinder.</div>
         </div>
       </Link>
-      {!userFound && (
-        <div className="hidden md:flex space-x-8">
-          <a href="#" className="text-gray-600 hover:text-black">
-            Feed
-          </a>
-          <a href="#" className="text-gray-600 hover:text-black">
-            Explore
-          </a>
-          <a href="#" className="text-gray-600 hover:text-black">
-            Settings
-          </a>
-        </div>
-      )}
+
+      <div className="hidden md:flex gap-8 ml-8">
+        <Link to="/feed" className="text-gray-600 hover:text-black">
+          Feed
+        </Link>
+        <Link to="/" className="text-gray-600 hover:text-black">
+          Explore
+        </Link>
+        <Link to="/" className="text-gray-600 hover:text-black">
+          Settings
+        </Link>
+      </div>
 
       {!userFound && (
         <div className="flex items-center space-x-3 md:space-x-4">
@@ -65,19 +85,21 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Profile and Notifications */}
       {userFound && (
         <div className="relative flex items-center space-x-4">
-          {userFound && (
-            <p className="text-base font-semibold">
-              {"Hi, " + userFound?.firstName}
-            </p>
-          )}
-          <Bell
-            className="text-gray-600 cursor-pointer hover:text-indigo-600"
-            size={24}
-          />
-          <div className="relative w-10 rounded-full">
+          <p className="text-base font-semibold">
+            {"Hi, " + userFound?.firstName}
+          </p>
+
+          <Link to="/requests" className="relative">
+            <Bell className="text-gray-600 cursor-pointer" size={24} />
+            {requests && (
+              <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-blue-500 rounded-full"></span>
+            )}
+          </Link>
+
+          {/* Profile Dropdown */}
+          <div className="relative w-10 rounded-full" ref={dropdownRef}>
             <img
               src="https://wallpapercave.com/wp/wp3067438.jpg"
               alt="User Profile"
@@ -104,12 +126,12 @@ const Navbar = () => {
                 >
                   Requests
                 </Link>
-                <Link
+                <button
                   onClick={handleLogout}
-                  className="block px-4 py-2 hover:bg-gray-100"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
                 >
                   Logout
-                </Link>
+                </button>
               </div>
             )}
           </div>
