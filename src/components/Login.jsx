@@ -11,6 +11,8 @@ const Login = () => {
   const [emailId, setEmailId] = useState("manikanta@gmail.com");
   const [password, setPassword] = useState("Manikanta@0011");
   const [errorMessage, setErrorMessage] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,6 +34,19 @@ const Login = () => {
       setErrorMessage(err?.response?.data?.error);
     }
   };
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post(
+        BASE_URL + "/signup",
+        { firstName, lastName, emailId, password },
+        { withCredentials: true }
+      );
+      dispatch(addUser(response?.data?.data));
+      navigate("/profile");
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
+  };
 
   return (
     <div className="flex items-center pt-4 justify-center bg-white-100  h-[calc(100vh-5rem)]">
@@ -46,6 +61,10 @@ const Login = () => {
               <label className="block text-gray-700 mb-1">FirstName</label>
               <input
                 type="test"
+                value={firstName}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               />
             </div>
@@ -55,6 +74,10 @@ const Login = () => {
               <label className="block text-gray-700 mb-1">LastName</label>
               <input
                 type="email"
+                value={lastName}
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               />
             </div>
@@ -98,6 +121,7 @@ const Login = () => {
           {!isLogin && (
             <button
               type="submit"
+              onClick={handleSignUp}
               className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2 rounded-lg hover:opacity-90"
             >
               Sign Up

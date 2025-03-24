@@ -7,7 +7,7 @@ import UserCard from "./userCard";
 
 const Feed = () => {
   const dispatch = useDispatch();
-  const feedData = useSelector((store) => store.feed);
+  const feedData = useSelector((store) => store.feed) || [];
   const getFeed = async () => {
     try {
       const response = await axios.get(BASE_URL + "/feed", {
@@ -24,10 +24,12 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  return (
+  return feedData.length > 0 ? (
     <div className=" h-[calc(100vh-4.5rem)] flex justify-center items-center">
-      {feedData && <UserCard user={feedData[0]} />}
+      <UserCard user={feedData[0]} />
     </div>
+  ) : (
+    <h1 className="text-center font-bold">No Feed Found</h1>
   );
 };
 
