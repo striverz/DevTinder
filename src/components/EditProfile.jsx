@@ -18,9 +18,7 @@ const EditProfile = ({ user }) => {
         { firstName, lastName, photoURL, about, skills },
         { withCredentials: true }
       );
-    } catch (err) {
-      console.log(err.message);
-    }
+    } catch (err) {}
   };
 
   return (

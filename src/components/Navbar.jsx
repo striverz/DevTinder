@@ -93,7 +93,7 @@ const Navbar = () => {
 
           <Link to="/requests" className="relative">
             <Bell className="text-gray-600 cursor-pointer" size={24} />
-            {requests && (
+            {requests?.length > 0 && (
               <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-blue-500 rounded-full"></span>
             )}
           </Link>

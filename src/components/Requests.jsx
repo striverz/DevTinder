@@ -25,9 +25,7 @@ const Requests = () => {
         withCredentials: true,
       });
       dispatch(addRequests(response?.data?.data));
-    } catch (err) {
-      console.error("Failed to fetch requests", err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

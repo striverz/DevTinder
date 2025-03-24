@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../redux/feedSlice";
 import { BASE_URL } from "../utils/constants";
-import UserCard from "./userCard";
+import UserCard from "./UserCard";
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -15,9 +15,7 @@ const Feed = () => {
       });
 
       dispatch(addFeed(response?.data?.data));
-    } catch (err) {
-      console.log(err.message);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

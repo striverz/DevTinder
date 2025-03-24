@@ -16,9 +16,7 @@ const Connections = () => {
         withCredentials: true,
       });
       dispatch(addConnections(response?.data?.data));
-    } catch (err) {
-      console.error("Error fetching connections", err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -29,8 +27,6 @@ const Connections = () => {
     return (
       <h1 className="text-center text-gray-600 mt-10">No Connections Found</h1>
     );
-
-  console.log(connections);
 
   return (
     <div className="p-6 bg-gray-100 rounded-lg">
