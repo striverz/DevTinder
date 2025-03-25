@@ -2,9 +2,9 @@
 
 DevTinder is a platform built for developers to connect, collaborate, and grow together. Whether you're looking for teammates, mentors, or networking opportunities, DevTinder has you covered.
 
-<img src="./src/assets/devtinder1.png" width="600px">
+<img src="./src/assets/devtinder1.png">
 
-<img src="./src/assets/devtinder4.png" width="600px">
+<img src="./src/assets/devtinder4.png" >
 
 ## 🔥 Features
 
@@ -20,7 +20,6 @@ DevTinder is a platform built for developers to connect, collaborate, and grow t
 - **Database**: MongoDB, Mongoose
 - **Authentication**: JWT (JSON Web Token)
 - **API Testing**: Postman
-  )
 
 ## 🚀 Getting Started
 
@@ -48,25 +47,6 @@ Make sure you have the following installed:
    ```sh
    npm run dev
    ```
-
-## 📌 API Endpoints
-
-### Authentication
-
-- **POST** `/api/auth/register` - Register a new user
-- **POST** `/api/auth/login` - Login user and get token
-
-### User Profile
-
-- **GET** `/api/users` - Get all user profiles
-- **GET** `/api/users/:id` - Get a specific user profile
-- **PUT** `/api/users/:id` - Update user profile
-
-### Connection Requests
-
-- **POST** `/api/requests/send` - Send a connection request
-- **POST** `/api/requests/accept` - Accept a connection request
-- **POST** `/api/requests/reject` - Reject a connection request
 
 ## 🌍 Live Demo
 
