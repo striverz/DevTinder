@@ -29,7 +29,7 @@ const Connections = () => {
     );
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg">
+    <div className="p-6 bg-gray-100 rounded-lg ">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
         My Connections
       </h2>

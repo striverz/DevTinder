@@ -64,7 +64,7 @@ const Navbar = () => {
           Feed
         </Link>
         <Link to="/" className="text-gray-600 hover:text-black">
-          Explore
+          Explore{" "}
         </Link>
         <Link to="/" className="text-gray-600 hover:text-black">
           Settings
