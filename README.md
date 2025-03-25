@@ -1,9 +1,10 @@
 # DevTinder
 
 DevTinder is a platform built for developers to connect, collaborate, and grow together. Whether you're looking for teammates, mentors, or networking opportunities, DevTinder has you covered.
-<img src="./src/assets/devtinder1.png">
-<img src="./src/assets/devtinder4.png">
-<img src="./src/assets/devtinder2.png">
+
+<img src="./src/assets/devtinder1.png" width="600px">
+
+<img src="./src/assets/devtinder4.png" width="600px">
 
 ## 🔥 Features
 
