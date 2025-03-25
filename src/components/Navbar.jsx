@@ -124,15 +124,10 @@ const Navbar = () => {
                 >
                   Connections
                 </Link>
-                <Link
-                  to="/requests"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Requests
-                </Link>
+
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 text-blue-500"
                 >
                   Logout
                 </button>
