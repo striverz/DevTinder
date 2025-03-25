@@ -67,7 +67,7 @@ const Requests = () => {
               <h3 className="font-semibold text-lg">
                 {firstName ? `${firstName} ${lastName || ""}` : "Unknown User"}
               </h3>
-              <p className="text-gray-600 text-sm">{designation || "N/A"}</p>
+              <p className="text-blue-500 text-sm">{designation || "N/A"}</p>
               <p className="text-gray-600 text-sm">
                 {about || "No details available"}
               </p>
