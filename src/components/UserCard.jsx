@@ -12,6 +12,7 @@ const UserCard = ({ user = {} }) => {
     skills = [],
     about = "No information provided",
     _id,
+    designation = "Software Developer",
   } = user;
 
   const dispatch = useDispatch();
@@ -45,19 +46,17 @@ const UserCard = ({ user = {} }) => {
         <h2 className="text-xl font-semibold text-gray-900">
           {firstName} {lastName}
         </h2>
-        <p className="text-blue-500 text-sm font-medium mt-1">
-          Full Stack Developer
-        </p>
+        <p className="text-blue-500 text-sm font-medium mt-1">{designation}</p>
         <p className="text-gray-600 mt-3 text-sm flex-1">{about}</p>
 
         {/* Skills Section */}
         <p className="mt-2">Skills</p>
-        <div className="flex flex-wrap justify-center gap-2 mt-2 min-h-[50px]">
+        <div className="flex flex-wrap justify-center items-center gap-2 mt-2 min-h-[50px]">
           {skills.length > 0 ? (
             skills.map((skill) => (
               <span
                 key={skill}
-                className="bg-gray-100 text-gray-700 px-3 py-1 text-xs font-medium rounded-full shadow-sm border border-gray-300"
+                className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-full"
               >
                 {skill}
               </span>
