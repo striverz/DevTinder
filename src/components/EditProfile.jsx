@@ -11,6 +11,7 @@ const EditProfile = ({ user }) => {
   const [skills, setSkills] = useState(user?.skills || []);
   const [designation, setDesignation] = useState(user?.designation || "");
   const dispatch = useDispatch();
+  const [uploadMsg, setUploadMsg] = useState("");
   const [updateMessage, setUpdateMessage] = useState("");
 
   const updateProfile = async () => {
@@ -24,6 +25,28 @@ const EditProfile = ({ user }) => {
     } catch (err) {
       setUpdateMessage("Error : " + err.message);
     }
+  };
+
+  const handlePhotoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "DevTinder");
+    data.append("cloud_name", "dao2gxmin");
+
+    setUploadMsg("Uploading...");
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dao2gxmin/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const jsonResponse = await response.json();
+    setUploadMsg("");
+    const url = jsonResponse?.url;
+    setphotoURL(url);
   };
 
   return (
@@ -52,15 +75,31 @@ const EditProfile = ({ user }) => {
             />
           </div>
         </div>
-        <div className="mt-4">
-          <label className="text-sm text-gray-500">Photo URL</label>
-          <input
-            type="text"
-            value={photoURL}
-            onChange={(e) => setphotoURL(e.target.value)}
-            className="w-full p-2 border rounded mt-1 text-gray-700"
-          />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4">
+            <label className="text-sm text-gray-500">Photo URL</label>
+            <input
+              type="text"
+              value={photoURL}
+              onChange={(e) => setphotoURL(e.target.value)}
+              className="w-full p-2 border rounded mt-1 text-gray-700"
+            />
+          </div>
+
+          <div className="mt-4">
+            {!uploadMsg && (
+              <label className="text-sm text-gray-500">Upload Photo</label>
+            )}
+            {uploadMsg && <span className=" text-blue-600"> {uploadMsg}</span>}
+            <input
+              type="file"
+              onChange={handlePhotoUpload}
+              className="w-full p-2 border rounded mt-1 text-gray-700"
+            />
+          </div>
         </div>
+
         <div className="mt-4">
           <label className="text-sm text-gray-500">Designation</label>
           <input
