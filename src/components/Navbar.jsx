@@ -101,7 +101,11 @@ const Navbar = () => {
           {/* Profile Dropdown */}
           <div className="relative w-10 rounded-full" ref={dropdownRef}>
             <img
-              src="https://wallpapercave.com/wp/wp3067438.jpg"
+              src={
+                userFound
+                  ? userFound?.photoURL
+                  : "https://wallpapercave.com/wp/wp3067438.jpg"
+              }
               alt="User Profile"
               className="w-10 h-10 rounded-full object-cover cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}

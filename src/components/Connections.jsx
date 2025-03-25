@@ -34,40 +34,43 @@ const Connections = () => {
         My Connections
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {connections.map((person, index) => (
-          <div
-            key={index}
-            className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center w-full max-w-xs mx-auto"
-          >
-            <img
-              src={person?.photoURL}
-              alt={person?.name}
-              className="w-24 h-24 rounded-full mb-4 object-cover border-2 border-gray-300"
-            />
-            <h3 className="text-lg font-semibold text-gray-800 text-center">
-              {person?.firstName + " " + person?.lastName}
-            </h3>
-            <p className="text-sm text-gray-500 text-center">
-              {person?.designation}
-            </p>
-            <div className="flex items-center justify-center text-sm text-gray-400 mt-1">
-              <CiLocationOn className="text-lg mr-1" />
-              <span>{person?.location}</span>
-            </div>
-            <p className="text-sm text-gray-600 text-center mt-2">
-              {person?.about}
-            </p>
+        {connections.map(
+          (person, index) =>
+            person && (
+              <div
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center w-full max-w-xs mx-auto"
+              >
+                <img
+                  src={person?.photoURL}
+                  alt={person?.name}
+                  className="w-24 h-24 rounded-full mb-4 object-cover border-2 border-gray-300"
+                />
+                <h3 className="text-lg font-semibold text-gray-800 text-center">
+                  {person?.firstName + " " + person?.lastName}
+                </h3>
+                <p className="text-sm text-gray-500 text-center">
+                  {person?.designation}
+                </p>
+                <div className="flex items-center justify-center text-sm text-gray-400 mt-1">
+                  <CiLocationOn className="text-lg mr-1" />
+                  <span>{person?.location}</span>
+                </div>
+                <p className="text-sm text-gray-600 text-center mt-2">
+                  {person?.about}
+                </p>
 
-            <div className="flex items-center justify-center gap-2 mt-3 text-gray-500 text-sm">
-              <FaUserFriends className="text-gray-600" />
-              <span>{person?.firstName?.length} mutual connections</span>
-            </div>
+                <div className="flex items-center justify-center gap-2 mt-3 text-gray-500 text-sm">
+                  <FaUserFriends className="text-gray-600" />
+                  <span>{person?.firstName?.length} mutual connections</span>
+                </div>
 
-            <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full flex items-center gap-2 transition duration-300">
-              <span className="text-lg"></span> Connected
-            </button>
-          </div>
-        ))}
+                <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full flex items-center gap-2 transition duration-300">
+                  <span className="text-lg"></span> Connected
+                </button>
+              </div>
+            )
+        )}
       </div>
     </div>
   );

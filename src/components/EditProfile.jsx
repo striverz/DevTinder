@@ -9,16 +9,21 @@ const EditProfile = ({ user }) => {
   const [photoURL, setphotoURL] = useState(user?.photoURL || "");
   const [about, setAbout] = useState(user?.about || "");
   const [skills, setSkills] = useState(user?.skills || []);
+  const [designation, setDesignation] = useState(user?.designation || "");
   const dispatch = useDispatch();
+  const [updateMessage, setUpdateMessage] = useState("");
 
   const updateProfile = async () => {
     try {
       const response = await axios.patch(
         BASE_URL + "/profile/edit",
-        { firstName, lastName, photoURL, about, skills },
+        { firstName, lastName, photoURL, about, skills, designation },
         { withCredentials: true }
       );
-    } catch (err) {}
+      setUpdateMessage("Profile is Updated");
+    } catch (err) {
+      setUpdateMessage("Error : " + err.message);
+    }
   };
 
   return (
@@ -57,6 +62,15 @@ const EditProfile = ({ user }) => {
           />
         </div>
         <div className="mt-4">
+          <label className="text-sm text-gray-500">Designation</label>
+          <input
+            type="text"
+            value={designation}
+            onChange={(e) => setDesignation(e.target.value)}
+            className="w-full p-2 border rounded mt-1 text-gray-700"
+          />
+        </div>
+        <div className="mt-4">
           <label className="text-sm text-gray-500">About</label>
           <textarea
             value={about}
@@ -77,6 +91,7 @@ const EditProfile = ({ user }) => {
             className="w-full p-2 border rounded mt-1 text-gray-700"
           />
         </div>
+
         <button
           onClick={updateProfile}
           className="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl"
@@ -93,7 +108,7 @@ const EditProfile = ({ user }) => {
         <h2 className="text-lg font-semibold text-blue-600 mt-2">
           {firstName} {lastName}
         </h2>
-        <p className="text-gray-600 text-sm">{"Competitive Programmer"}</p>
+        <p className="text-gray-600 text-sm">{designation}</p>
         <h3 className="mt-4 text-sm font-semibold text-gray-800">About</h3>
         <p className="text-gray-600 text-sm mt-1">{about}</p>
         <h3 className="mt-4 text-sm font-semibold text-gray-800">Skills</h3>
