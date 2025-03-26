@@ -20,9 +20,11 @@ const DevtinderLanding = () => {
             minimalist and efficient approach to developer connections
           </p>
           <div className="mt-6 flex flex-col md:flex-row justify-center space-y-3 md:space-y-0 md:space-x-4">
-            <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-sm md:text-base font-semibold shadow-md hover:opacity-90">
-              Get Started
-            </button>
+            <Link to="/login">
+              <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-sm md:text-base font-semibold shadow-md hover:opacity-90">
+                Get Started
+              </button>
+            </Link>
             <Link to="/about">
               <button className="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full text-sm md:text-base font-semibold shadow-md hover:bg-gray-100">
                 Learn More

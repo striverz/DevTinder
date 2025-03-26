@@ -49,7 +49,7 @@ const Connections = () => {
                 <h3 className="text-lg font-semibold text-gray-800 text-center">
                   {person?.firstName + " " + person?.lastName}
                 </h3>
-                <p className="text-sm text-gray-500 text-center">
+                <p className="text-sm text-blue-600 text-center">
                   {person?.designation}
                 </p>
                 <div className="flex items-center justify-center text-sm text-gray-400 mt-1">
@@ -61,7 +61,7 @@ const Connections = () => {
                 </p>
 
                 <div className="flex items-center justify-center gap-2 mt-3 text-gray-500 text-sm">
-                  <FaUserFriends className="text-gray-600" />
+                  <FaUserFriends className="text-blue-600" />
                   <span>{person?.firstName?.length} mutual connections</span>
                 </div>
 

@@ -52,7 +52,15 @@ const Login = () => {
     <div className="flex items-center pt-4 justify-center bg-white-100  h-[calc(100vh-5rem)]">
       <div className="bg-white p-8  rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold text-center text-gray-900">
-          {isLogin ? "Welcome to DevTinder" : "Join DevTinder Today"}
+          {isLogin ? (
+            <>
+              Welcome to <span className="text-indigo-600">DevTinder</span>
+            </>
+          ) : (
+            <>
+              Join <span className="text-indigo-600">DevTinder</span> Today
+            </>
+          )}
         </h2>
 
         <div>

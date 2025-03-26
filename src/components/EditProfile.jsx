@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, CLOUDINARY_URL } from "../utils/constants";
 import axios from "axios";
 
 const EditProfile = ({ user }) => {
@@ -36,13 +36,10 @@ const EditProfile = ({ user }) => {
     data.append("cloud_name", "dao2gxmin");
 
     setUploadMsg("Uploading...");
-    const response = await fetch(
-      "https://api.cloudinary.com/v1_1/dao2gxmin/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
+    const response = await fetch(CLOUDINARY_URL, {
+      method: "POST",
+      body: data,
+    });
     const jsonResponse = await response.json();
     setUploadMsg("");
     const url = jsonResponse?.url;

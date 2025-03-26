@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { removeFeed } from "../redux/feedSlice";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, DEFAULT_PHOTO_URL } from "../utils/constants";
 
 const UserCard = ({ user = {} }) => {
   const {
     firstName = "Unknown",
     lastName = "",
-    photoURL = "https://via.placeholder.com/150",
+    photoURL = DEFAULT_PHOTO_URL,
     skills = [],
     about = "No information provided",
     _id,

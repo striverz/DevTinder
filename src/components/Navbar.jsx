@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, DEFAULT_PHOTO_URL } from "../utils/constants";
 import { removeUser } from "../redux/userSlice";
 
 const Navbar = () => {
@@ -101,11 +101,7 @@ const Navbar = () => {
           {/* Profile Dropdown */}
           <div className="relative w-10 rounded-full" ref={dropdownRef}>
             <img
-              src={
-                userFound
-                  ? userFound?.photoURL
-                  : "https://wallpapercave.com/wp/wp3067438.jpg"
-              }
+              src={userFound ? userFound?.photoURL : DEFAULT_PHOTO_URL}
               alt="User Profile"
               className="w-10 h-10 rounded-full object-cover cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
