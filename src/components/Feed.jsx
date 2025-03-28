@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../redux/feedSlice";
 import { BASE_URL } from "../utils/constants";
 import UserCard from "./UserCard";
+import NoFeed from "./NoFeed";
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Feed = () => {
       <UserCard user={feedData[0]} />
     </div>
   ) : (
-    <h1 className="text-center font-bold">No Feed Found</h1>
+    <NoFeed />
   );
 };
 
