@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../redux/connectionsSlice";
 import { FaUserFriends } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
+import NoConnectionsFound from "./NoConnectionsFound";
 
 const Connections = () => {
   const dispatch = useDispatch();
@@ -23,10 +24,7 @@ const Connections = () => {
     getConnections();
   }, []);
 
-  if (!connections || connections.length === 0)
-    return (
-      <h1 className="text-center text-gray-600 mt-10">No Connections Found</h1>
-    );
+  if (!connections || connections.length === 0) return <NoConnectionsFound />;
 
   return (
     <div className="p-6 bg-gray-100 rounded-lg ">
