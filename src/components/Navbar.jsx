@@ -66,7 +66,7 @@ const Navbar = () => {
         <Link to="/" className="text-gray-600 hover:text-black">
           Explore{" "}
         </Link>
-        <Link to="/" className="text-gray-600 hover:text-black">
+        <Link to="/settings" className="text-gray-600 hover:text-black">
           Settings
         </Link>
       </div>
