@@ -3,10 +3,12 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequest } from "../redux/requestsSlice";
+import NoRequestsFound from "./NoRequestsFound";
 
 const Requests = () => {
   const dispatch = useDispatch();
   const requests = useSelector((store) => store.requests || []); // Ensure it's always an array
+  console.log(requests);
 
   const handleRequestReview = async (status, id) => {
     if (!id) return;
@@ -39,7 +41,7 @@ const Requests = () => {
   }, []);
 
   if (!requests.length) {
-    return <h1 className="text-center">No Requests Found</h1>;
+    return <NoRequestsFound />;
   }
 
   return (
