@@ -11,6 +11,8 @@ const Connections = () => {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connections);
 
+  console.log(connections);
+
   const getConnections = async () => {
     try {
       const response = await axios.get(BASE_URL + "/user/connections", {

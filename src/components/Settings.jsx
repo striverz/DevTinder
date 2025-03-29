@@ -48,6 +48,8 @@ const Settings = () => {
         { withCredentials: true }
       );
       setPasswordStatus("Password Changed Successfully");
+      setNewPassword("");
+      setCurrentPassword("");
       setTimeout(() => {
         setPasswordStatus("");
       }, 1000);
