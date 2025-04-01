@@ -8,7 +8,6 @@ import NoRequestsFound from "./NoRequestsFound";
 const Requests = () => {
   const dispatch = useDispatch();
   const requests = useSelector((store) => store.requests || []); // Ensure it's always an array
-  console.log(requests);
 
   const handleRequestReview = async (status, id) => {
     if (!id) return;
@@ -19,9 +18,7 @@ const Requests = () => {
         { withCredentials: true }
       );
       dispatch(removeRequest(id));
-    } catch (err) {
-      console.error("Error handling request review:", err);
-    }
+    } catch (err) {}
   };
 
   const getRequests = async () => {
@@ -29,11 +26,9 @@ const Requests = () => {
       const response = await axios.get(`${BASE_URL}/user/requests`, {
         withCredentials: true,
       });
-      console.log("API Response:", response.data);
+
       dispatch(addRequests(response?.data?.data || []));
-    } catch (err) {
-      console.error("Error fetching requests:", err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
