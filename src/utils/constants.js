@@ -1,5 +1,4 @@
-export const BASE_URL = "http://localhost:3333";
-// export const BASE_URL = "https://devtinder-backend-k5iw.onrender.com";
+export const BASE_URL = "https://devtinder-backend-qnq5.onrender.com";
 
 export const CLOUDINARY_URL =
   "https://api.cloudinary.com/v1_1/dao2gxmin/image/upload";
