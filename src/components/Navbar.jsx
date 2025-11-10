@@ -48,7 +48,7 @@ const Navbar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, userFound]);
 
   return (
     <nav className="flex items-center justify-between p-4 h-18 bg-white">
@@ -73,13 +73,12 @@ const Navbar = () => {
 
       {!userFound && (
         <div className="flex items-center space-x-3 md:space-x-4">
-          <Link
-            to="/login"
-            className="text-gray-600 hover:text-black text-sm md:text-base"
+          <button
+            onClick={() => {
+              navigate("/signin");
+            }}
+            className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm md:text-base font-semibold shadow-md hover:opacity-90"
           >
-            Sign in
-          </Link>
-          <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm md:text-base font-semibold shadow-md hover:opacity-90">
             Get Started
           </button>
         </div>

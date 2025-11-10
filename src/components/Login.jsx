@@ -20,20 +20,6 @@ const Login = () => {
     setIsLogin(!isLogin);
   };
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post(
-        BASE_URL + "/login",
-        { emailId, password },
-        { withCredentials: true }
-      );
-
-      dispatch(addUser(response?.data?.data));
-      navigate("/feed");
-    } catch (err) {
-      setErrorMessage(err?.response?.data?.error);
-    }
-  };
   const handleSignUp = async () => {
     try {
       const response = await axios.post(
@@ -42,9 +28,25 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(response?.data?.data));
-      navigate("/profile");
+      navigate("/signin");
     } catch (err) {
       setErrorMessage(err.message);
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        BASE_URL + "/signin",
+        { emailId, password },
+        { withCredentials: true }
+      );
+
+      dispatch(addUser(response?.data?.data));
+
+      navigate("/feed");
+    } catch (err) {
+      setErrorMessage(err?.response?.data?.error);
     }
   };
 
